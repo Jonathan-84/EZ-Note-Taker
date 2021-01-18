@@ -1,11 +1,14 @@
+const Notes = require("../db/notes");
 const router= require("express").Router()
-const Notes = require("../db/notes")
 
-router.get("/api/notes", function(req,res) {
-    Notes.getnotes().then(data=>res.json(data))
+router.get("/notes", function(req,res) {
+    Notes.getnotes()
+   // .then(data=>res.json(data))
+   .then((note) => res.json(note)) 
+   .catch((err) => res.status(500).json(err));
 });
 
-router.post("/api/notes", function(req,res) {
+router.post("/notes", function(req,res) {
     Notes.addnotes(req.body)
     .then((note) => res.json(note))
     .catch((err) => res.status(500).json(err));

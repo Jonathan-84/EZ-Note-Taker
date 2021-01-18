@@ -1,6 +1,6 @@
 const fs = require("fs");
 const util =require("util");
-const uuid= require("uuid/v1");
+const uuid= require("uuidv1");
 
 const readfile= util.promisify(fs.readFile);
 const writefile=util.promisify(fs.writeFile);
@@ -10,7 +10,7 @@ class Notes {
         return readfile("db/db.json", "utf8") 
     }
     writenotes(note) {
-        return writefile("db/db.json", JSON.stringify(note))
+        return writefile("db/db.json", JSON.stringify(note));
     }
     getnotes() {
         return this.readnotes()
@@ -23,7 +23,7 @@ class Notes {
              foundnotes=[]
          }
          return foundnotes
-        })
+        });
     }
 
     addnotes(note) {
@@ -44,4 +44,4 @@ class Notes {
     }
 
 }
-module.exports= new Notes()
+module.exports= new Notes();
