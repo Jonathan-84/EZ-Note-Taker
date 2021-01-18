@@ -5,15 +5,15 @@ const uuidv1 = require('uuid/v1');
 const router= require("express").Router();
 
 router.get("/notes", function(req,res) {
-    Notes.getnotes(req.body)
-   .then(data=>res.json(data))
+    Notes.getnotes()
+   //.then(data=>res.json(data))
    .then((note) => res.json(note)) 
    .catch((err) => res.status(500).json(err));
 });
 
 router.post("/notes", function(req,res) {
     Notes.addnotes(req.body)
-    .then((note) => res.json(note))
+    .then((data) => res.json(data))
     .catch((err) => res.status(500).json(err));
 });
 
