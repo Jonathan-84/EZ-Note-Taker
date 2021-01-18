@@ -6,7 +6,7 @@ const router= require("express").Router();
 
 router.get("/notes", function(req,res) {
     Notes.getnotes()
-   // .then(data=>res.json(data))
+   .then(data=>res.json(data))
    .then((note) => res.json(note)) 
    .catch((err) => res.status(500).json(err));
 });
