@@ -14,10 +14,10 @@ class Notes {
     }
     getnotes() {
         return this.readnotes()
-        .then(notes=>{
+        .then(data=>{
          let foundnotes;
          try{
-             foundnotes = [].concat(JSON.parse(notes))
+             foundnotes = [].concat(JSON.parse(data))
          }   
          catch(err) {
              foundnotes=[];
@@ -32,14 +32,14 @@ class Notes {
         console.log ("There must be a Title and Text!")
         }
         const finalnote = {tile, text, id:uuidv1()}
-        return this.getnotes().then(notes => [...notes, finalnote])
+        return this.getnotes().then(data => [...data, finalnote])
         .then(updateddata => this.writenotes(updateddata))
         .then(()=>finalnote)
     }
 
     removenote(id) {
         return this.getnotes()
-        .then(notes=>notes.filter(data=>data.id !== id))
+        .then(data=>data.filter(data=>data.id !== id))
         .then(filtered => this.writenotes(filtered))
     }
 
