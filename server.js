@@ -20,16 +20,17 @@ app.get("/api/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "db.json"));
 });
 */
-app.use(require("./Routes/api", apiRoutes));
-app.use(require("./Routes/html", apiRoutes));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
+
+app.use("/api", apiRoutes);
+app.use("/", htmlRoutes);
 
 
 
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
-});
+})
