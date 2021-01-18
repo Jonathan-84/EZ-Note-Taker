@@ -2,6 +2,8 @@ const fs = require("fs");
 const util =require("util");
 const uuidv1 = require('uuidv1')
 
+console.log(uuidv1())
+
 const readfile= util.promisify(fs.readFile);
 const writefile=util.promisify(fs.writeFile);
 
@@ -14,13 +16,13 @@ class Notes {
     }
     getnotes() {
         return this.readnotes()
-        .then(data=>{
+        .then(data=> {
          let foundnotes;
          try{
-             foundnotes = [].concat(JSON.parse(data))
+             foundnotes = [].concat(JSON.parse(data));
          }   
          catch(err) {
-             foundnotes=[];
+             foundnotes= [];
          }
          return foundnotes
         });
@@ -31,7 +33,7 @@ class Notes {
         if (!title || !text){
         console.log ("There must be a Title and Text!")
         }
-        const finalnote = {tile, text, id:uuidv1()}
+        const finalnote = {tile, text, id:uuidv1()};
         return this.getnotes()
         .then(data => [...data, finalnote])
         .then(updateddata => this.writenotes(updateddata))
@@ -40,7 +42,8 @@ class Notes {
 
     removenote(id) {
         return this.getnotes()
-        .then(data=>data.filter(data=>data.id !== id))
+        .then(data=>data
+        .filter(data=>data.id !== id))
         .then(filtered => this.writenotes(filtered))
     }
 
