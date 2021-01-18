@@ -1,9 +1,11 @@
 const express = require("express");
-const apiRoutes = require('./Routes/api');
-const htmlRoutes = require('./Routes/html');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
+
 
 // Routes user to the index page
 /*app.get("/", function(req, res) {
@@ -22,8 +24,8 @@ app.get("/api/notes", function(req, res) {
 */
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static("public"))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.use("/api", apiRoutes);
 app.use("/", htmlRoutes);
