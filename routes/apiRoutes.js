@@ -5,7 +5,7 @@ const uuidv1 = require('uuid/v1');
 const router= require("express").Router();
 
 router.get("/notes", function(req,res) {
-    Notes.getnotes()
+    Notes.getnotes(req.body)
    .then(data=>res.json(data))
    .then((note) => res.json(note)) 
    .catch((err) => res.status(500).json(err));
