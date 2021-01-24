@@ -1,6 +1,6 @@
 const fs = require("fs");
 const util =require("util");
-const uuidv1 = require('uuidv1')
+const uuidv1 = require('uuid/v1')
 
 console.log(uuidv1())
 
