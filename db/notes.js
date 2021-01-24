@@ -33,7 +33,7 @@ class Notes {
         if (!title || !text){
         console.log ("There must be a Title and Text!")
         }
-        const finalnote = {tile, text, id:uuidv1()};
+        const finalnote = {title, text, id:uuidv1()};
         return this.getnotes()
         .then(data => [...data, finalnote])
         .then(updateddata => this.writenotes(updateddata))
